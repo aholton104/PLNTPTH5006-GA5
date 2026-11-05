@@ -61,7 +61,12 @@ sbatch scripts/salmon_index.sh data/ref/GCF_016801865.2_TS_CPP_V2.rna.fna data/r
 
 ## Step 3: Pseudo-alignment and quantification with Salmon
 
-<???>
+```bash
+for fastq_r1 in results/trimgalore/*_R1.fastq.gz; do
+	fastq_r2="${fastq_r1/_R1/_R2}"
+	sbatch scripts/salmon_quant.sh "$fastq_r1" "$fastq_r2" data/ref/salmon_index results/salmon_quant
+done
+```
 
 ## Step 4: Summarizing the results of all steps with MultiQC
 
