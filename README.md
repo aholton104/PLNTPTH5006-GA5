@@ -50,21 +50,20 @@ The output of the command was:
 Code to check the size of the index dir:
 
 ```bash
-# Your command:
+du -sh data/ref/salmon_index
 ```
 
 The output of the command was:
 
 ```
+1.1G    data/ref/salmon_index
 ```
 
-*Answer*: How long it took to create the index, and how you found out:
+***Answer*: How long it took to create the index, and how you found out:** It took roughly 30 seconds to create the index, which I found out by monitoring the batch job with `squeue -u aeholton2005 -l`. I also used `head -n 5 slurm-salmon_index*.out` and `tail -n 5 slurm-salmon_index*.out` to view when the script started and when it was successfully completed.
 
-*Answer*: The size of the index dir:
+***Answer*: The size of the index dir:** 1.1G
 
 ### 8: Run Salmon for all samples
-
-<!-- No answer needed here -- we check `protocol.md` directly. -->
 
 ### 9: The transcripts with the most reads
 

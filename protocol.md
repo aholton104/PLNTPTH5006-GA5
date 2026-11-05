@@ -55,7 +55,9 @@ done
 
 ## Step 2: Creating a transcriptome index with Salmon
 
-<???>
+```bash
+sbatch scripts/salmon_index.sh data/ref/GCF_016801865.2_TS_CPP_V2.rna.fna data/ref/salmon_index
+```
 
 ## Step 3: Pseudo-alignment and quantification with Salmon
 
