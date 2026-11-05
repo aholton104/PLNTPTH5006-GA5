@@ -30,7 +30,7 @@ The output of the command was:
 28624
 ```
 
-*Answer*: The number of transcripts in the file: 28,624
+***Answer*:** The number of transcripts in the file: 28,624
 
 ------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ The output of the command was:
 
 ### 9: The transcripts with the most reads
 
-***Answer*: What the `NumReads` column contains:** The `NumReads` column provides an estimate of the number of sequencing reads that originates from a single transcript as some reads can align equally with differen transcripts. 
+***Answer*: What the `NumReads` column contains:** The `NumReads` column provides an estimate of the number of sequencing reads that originate from a single transcript as some reads can align equally with different transcripts. 
 
 ```bash
 sort -k5,5nr results/salmon_quant/S63/quant.sf | head -n3
@@ -138,7 +138,7 @@ results/salmon_quant/S78/logs/salmon_quant.log:mapping rate: 84.2490%
 
 ### 13: Run MultiQC
 
-***Answer*: For each program, the number of reports that MultiQC found, and why it found this number:** MultiQC found 22 reports for Salmon and 44 reports for TrimGalore and FASTQC. Salmon uses paired-end data, where R1 and R2 files for a sample are processed together. Conversely, TrimGalore and FASTQC run on one read, or one FASTQ file, not on paired-end samples together. This can be seen in how `results/salmon_quant` is organized by sample (S63, S64, etc.) while `results/trimgalore` has reports for each read (S63_R1, S63_R2, S64_R1, etc.).
+***Answer*: For each program, the number of reports that MultiQC found, and why it found this number:** MultiQC found 22 reports for Salmon and 44 reports for TrimGalore and FASTQC. Salmon uses paired-end data, where R1 and R2 files for a sample are processed together. Conversely, TrimGalore and FASTQC run on one read, or one FASTQ file, providing one report per read. This can be seen in how `results/salmon_quant` is organized by sample (S63, S64, etc.) while `results/trimgalore` has reports for each read (S63_R1, S63_R2, S64_R1, etc.).
 
 ### 14: The General Statistics table
 
@@ -161,16 +161,16 @@ results/salmon_quant/S78/logs/salmon_quant.log:mapping rate: 84.2490%
 ***Answer*: At least three of Claude's suggestions, and whether you agree or disagree with each one, and why:**
 
 1. **Use "Set file paths" variables throughout:** I had not noticed that I did not use all the variables defined here. I agree with the suggestion to incorporate these variables in the `protocol.md` so that variables are used consistently and can be easily tracked. 
-2. **`multiqc.sh` resources:** One suggestion pointed out that the no `--time` or ``--cpus-per-task`` lines were provided for the `multiqc.sh` script compared to the other scripts. I agree that it would be beneficial to include these, though their values would depend on the jobs being run. 
-3. **Log dirs:** Claude recommends having the script automatically `mv` its log to `"$outdir"/logs` at the end of the script. However, I think that it is better to manually move these files since it is easier to remove logs of failed jobs this way. 
+2. **`multiqc.sh` resources:** One suggestion pointed out that no `--time` or `--cpus-per-task` lines were provided for the `multiqc.sh` script compared to the other scripts. I agree that it would be beneficial to include these, though their values would depend on the jobs being run. 
+3. **Log dirs:** Claude recommends having the script automatically `mv` its log to appropriate `logs/` at the end of the script. However, I think that it is better to manually move these files since it is easier to remove logs of failed jobs this way. 
 
 
 ### 18: Address a suggestion
 
-*Answer*: Which suggestion(s) you addressed, and what you changed:
+***Answer*: Which suggestion(s) you addressed, and what you changed:**
 
-1. I incorporated the first suggestion into my `protocols.md` file by making sure all variables are used throughout. I checked steps 1-3 to make sure variables were used and changed code where variables could be incorporated. 
-2. Other issues I addressed had to do with copy-pasting issues or typos when repeating code or transfering the output of a command that was printed to the terminal to a separated file. 
+1. I incorporated the first suggestion into my `protocol.md` file by making sure all variables are used throughout. I checked steps 1-3 to make sure variables were used and changed code where variables could be incorporated. 
+2. Other issues I addressed had to do with copy-pasting issues when transfering the output of a command that was printed to the terminal to a separate file (`README.md`). 
 
 ------------------------------------------------------------------------
 
