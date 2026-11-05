@@ -1,5 +1,7 @@
 # GA5 answers - Abigail Holton
 
+[![DOI](https://sandbox.zenodo.org/badge/1447387417.svg)](https://handle.test.datacite.org/10.5072/zenodo.633558)
+
 ------------------------------------------------------------------------
 
 ## Part A: Your project dir, Git repo, and protocol
@@ -180,4 +182,4 @@ results/salmon_quant/S78/logs/salmon_quant.log:mapping rate: 84.2490%
 
 ### 20: Get a (test) DOI with Zenodo
 
-*Answer*: Your Zenodo Sandbox DOI:
+***Answer*: Your Zenodo Sandbox DOI:** 10.5072/zenodo.633559
