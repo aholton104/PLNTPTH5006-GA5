@@ -136,26 +136,21 @@ results/salmon_quant/S78/logs/salmon_quant.log:mapping rate: 84.2490%
 
 ### 12: Update your MultiQC script
 
-<!-- No need to paste the script: we'll look at scripts/multiqc.sh and its Git history directly. -->
-
 ### 13: Run MultiQC
 
-*Answer*: For each program, the number of reports that MultiQC found,
-and why it found this number:
+***Answer*: For each program, the number of reports that MultiQC found, and why it found this number:** MultiQC found 22 reports for Salmon and 44 reports for TrimGalore and FASTQC. Salmon uses paired-end data, where R1 and R2 files for a sample are processed together. Conversely, TrimGalore and FASTQC run on one read, or one FASTQ file, not on paired-end samples together. This can be seen in how `results/salmon_quant` is organized by sample (S63, S64, etc.) while `results/trimgalore` has reports for each read (S63_R1, S63_R2, S64_R1, etc.).
 
 ### 14: The General Statistics table
 
-*Answer*: The sample with the lowest Salmon mapping rate,
-and whether this matches your answer to question 11:
+***Answer*: The sample with the lowest Salmon mapping rate, and whether this matches your answer to question 11:** According to the MultiQC report, S83 has the lowest Salmon mapping rate (76.2%), which is the same as what was found in question 11 (76.15%). 
 
 ### 15: Adapter lengths
 
-*Answer*: The most common adapter lengths, whether this surprised you,
-and why you think these lengths are the most common:
+***Answer*: The most common adapter lengths, whether this surprised you, and why you think these lengths are the most common:** The most common adapter lengths are between 1-5bp. This does not suprise me, since I would think that these lengths are most common as a result of overlap between adapter sequences and reads. Random overlap of nucleotides in the end of a read and the beginning of the adapter will be trimmed by TrimGalore, indicating the trimmed adapter lengths. 
 
 ### 16: Ask Claude about the MultiQC report
 
-*Answer*: What you asked, and what you learned from Claude's answer (in your own words):
+***Answer*: What you asked, and what you learned from Claude's answer (in your own words):** I asked about the cause of a minor secondary spike in FastQC sequence duplication levels. Claude responded that this often results from a smaller set of abundant sequences, depending on the sequencing data. For RNA-seq, this is to be expected, as duplication of highly expressed genes is common and usually inconsequential. For DNA-seq, it is likely this secondary spike is the result of PCR over-amplification, which can happen when too many cycles are run. 
 
 ------------------------------------------------------------------------
 
