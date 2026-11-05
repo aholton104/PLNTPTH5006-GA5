@@ -28,19 +28,20 @@
 ## Set up: Download the reference transcriptome FASTA file from NCBI
 
 ```bash
-# Downloaded on <???>
-<???>
+# Downloaded on 2026-11-05 at [NCBI FTP](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/)
+URL=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/GCF_016801865.2_TS_CPP_V2_rna.fna.gz
+wget -P data/ref "$URL"
 ```
 
 ## Set up: Set file paths
 
 ```bash
 # Inputs:
-fastq_dir=<???>
-ref_transcripts=<???>
+fastq_dir=../garrigos/fastq/
+ref_transcripts=data/ref/
 
 # Base output dir:
-outdir=results
+outdir=results/
 ```
 
 ## Step 1: Read trimming with TrimGalore

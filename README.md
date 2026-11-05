@@ -18,20 +18,19 @@ mkdir -p scripts/ data/ref/ results/
 
 ### 5: Download the reference transcriptome
 
-<!-- Put the download command in `protocol.md`, not here. -->
-
 Code to count the number of transcripts:
 
 ```bash
-# Your command:
+zcat data/ref/GCF_016801865.2_TS_CPP_V2_rna.fna.gz | grep -c ">"
 ```
 
 The output of the command was:
 
 ```
+28624
 ```
 
-*Answer*: The number of transcripts in the file:
+*Answer*: The number of transcripts in the file: 28,624
 
 ------------------------------------------------------------------------
 
