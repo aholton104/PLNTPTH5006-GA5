@@ -38,10 +38,8 @@ The output of the command was:
 
 ### 6: Run TrimGalore
 
-<!-- Put the code to run TrimGalore in `protocol.md`, not here. -->
-
-*Answer*: Whether all batch jobs succeeded, and how you checked that
-(and any problems you encountered, and how you solved them):
+***Answer*: Whether all batch jobs succeeded, and how you checked that
+(and any problems you encountered, and how you solved them):** All batch jobs succeeded. Jobs were monitored with `squeue -u aeholton2005 -l`, and success of all batch jobs was confirmed with `grep -c "Successfully finished" slurm-trimgalore-*.out` with all files including this phrase. 
 
 ------------------------------------------------------------------------
 
