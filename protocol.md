@@ -2,7 +2,7 @@
 
 - Author: Abigail Holton
 - Date created: 2026-11-05
-- Date last modified: <???>
+- Date last modified: 2026-11-05
 - This was run at the Pitzer cluster of the Ohio Supercomputer Center (<https://www.osc.edu>)
 - OSC working dir: `/fs/ess/PAS3493/people/aeholton2005/GA5`
 - GitHub repository: <???>
@@ -28,7 +28,7 @@
 ## Set up: Download the reference transcriptome FASTA file from NCBI
 
 ```bash
-# Downloaded on 2026-11-05 at [NCBI FTP](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/)
+# Downloaded on 2026-11-05 at NCBI FTP
 URL=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/GCF_016801865.2_TS_CPP_V2_rna.fna.gz
 wget -P data/ref "$URL"
 ```
@@ -37,11 +37,11 @@ wget -P data/ref "$URL"
 
 ```bash
 # Inputs:
-fastq_dir=../garrigos/fastq/
-ref_transcripts=data/ref/
+fastq_dir=../garrigos/fastq
+ref_transcripts=data/ref
 
 # Base output dir:
-outdir=results/
+outdir=results
 ```
 
 ## Step 1: Read trimming with TrimGalore
@@ -49,27 +49,27 @@ outdir=results/
 ```bash
 for fastq_r1 in "$fastq_dir"/*_R1.fastq.gz; do
   fastq_r2="${fastq_r1/_R1/_R2}"
-  sbatch scripts/trimgalore.sh "$fastq_r1" "$fastq_r2" results/trimgalore
+  sbatch scripts/trimgalore.sh "$fastq_r1" "$fastq_r2" "$outdir"/trimgalore
 done
 ```
 
 ## Step 2: Creating a transcriptome index with Salmon
 
 ```bash
-sbatch scripts/salmon_index.sh data/ref/GCF_016801865.2_TS_CPP_V2.rna.fna data/ref/salmon_index
+sbatch scripts/salmon_index.sh "$ref_transcripts"/GCF_016801865.2_TS_CPP_V2_rna.fna.gz "$ref_transcripts"/salmon_index
 ```
 
 ## Step 3: Pseudo-alignment and quantification with Salmon
 
 ```bash
-for fastq_r1 in results/trimgalore/*_R1.fastq.gz; do
+for fastq_r1 in "$outdir"/trimgalore/*_R1.fastq.gz; do
 	fastq_r2="${fastq_r1/_R1/_R2}"
-	sbatch scripts/salmon_quant.sh "$fastq_r1" "$fastq_r2" data/ref/salmon_index results/salmon_quant
+	sbatch scripts/salmon_quant.sh "$fastq_r1" "$fastq_r2" "$ref_transcripts"/salmon_index "$outdir"/salmon_quant
 done
 ```
 
 ## Step 4: Summarizing the results of all steps with MultiQC
 
 ```bash
-sbatch scripts/multiqc.sh results results/multiqc
+sbatch scripts/multiqc.sh "$outdir"/ "$outdir"/multiqc
 ```

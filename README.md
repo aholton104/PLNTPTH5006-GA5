@@ -158,20 +158,25 @@ results/salmon_quant/S78/logs/salmon_quant.log:mapping rate: 84.2490%
 
 ### 17: Claude's review of your protocol and scripts
 
-*Answer*: At least three of Claude's suggestions,
-and whether you agree or disagree with each one, and why:
+***Answer*: At least three of Claude's suggestions, and whether you agree or disagree with each one, and why:**
+
+1. **Use "Set file paths" variables throughout:** I had not noticed that I did not use all the variables defined here. I agree with the suggestion to incorporate these variables in the `protocol.md` so that variables are used consistently and can be easily tracked. 
+2. **`multiqc.sh` resources:** One suggestion pointed out that the no `--time` or ``--cpus-per-task`` lines were provided for the `multiqc.sh` script compared to the other scripts. I agree that it would be beneficial to include these, though their values would depend on the jobs being run. 
+3. **Log dirs:** Claude recommends having the script automatically `mv` its log to `"$outdir"/logs` at the end of the script. However, I think that it is better to manually move these files since it is easier to remove logs of failed jobs this way. 
+
 
 ### 18: Address a suggestion
 
 *Answer*: Which suggestion(s) you addressed, and what you changed:
+
+1. I incorporated the first suggestion into my `protocols.md` file by making sure all variables are used throughout. I checked steps 1-3 to make sure variables were used and changed code where variables could be incorporated. 
+2. Other issues I addressed had to do with copy-pasting issues or typos when repeating code or transfering the output of a command that was printed to the terminal to a separated file. 
 
 ------------------------------------------------------------------------
 
 ## Part F: Publish your repo on GitHub
 
 ### 19: Create a GitHub repository and push
-
-<!-- No answer needed here -- we check your GitHub repo directly. -->
 
 ### 20: Get a (test) DOI with Zenodo
 
