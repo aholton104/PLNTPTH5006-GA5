@@ -46,6 +46,8 @@ outdir=results
 
 ## Step 1: Read trimming with TrimGalore
 
+`trimgalore.sh` runs TrimGalore on paired-end FASTQ samples of 1 sample and takes 3 arguments: FASTQ R1 file, FASTQ R2 file, and the output dir. 
+
 ```bash
 for fastq_r1 in "$fastq_dir"/*_R1.fastq.gz; do
   fastq_r2="${fastq_r1/_R1/_R2}"
@@ -55,11 +57,15 @@ done
 
 ## Step 2: Creating a transcriptome index with Salmon
 
+`salmon_index.sh` runs Salmon to create index from `_rna.fna.gz` file and takes 2 arguments: `_rna.fna.gz` file and output dir. 
+
 ```bash
 sbatch scripts/salmon_index.sh "$ref_transcripts"/GCF_016801865.2_TS_CPP_V2_rna.fna.gz "$ref_transcripts"/salmon_index
 ```
 
 ## Step 3: Pseudo-alignment and quantification with Salmon
+
+`salmon_quant.sh` runs Salmon on trimmed FASTQ files and takes 4 arguments: FASTQ R1 file, FASTA R2 file, index dir, and output dir. 
 
 ```bash
 for fastq_r1 in "$outdir"/trimgalore/*_R1.fastq.gz; do
@@ -69,6 +75,8 @@ done
 ```
 
 ## Step 4: Summarizing the results of all steps with MultiQC
+
+`multiqc.sh` runs MultiQC on TrimGalore & Salmon results and takes 2 arguments: TrimGalore & Salmon results dir and output dir. 
 
 ```bash
 sbatch scripts/multiqc.sh "$outdir"/ "$outdir"/multiqc
